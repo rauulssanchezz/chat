@@ -19,14 +19,13 @@ export class LoginComponent {
   constructor(private _authService: AuthService, private router: Router) { }
 
   login() {
-    console.log('Logging in component');
     this.error = '';
     if(this.validateForm()){
       this._authService.login(this.email, this.password)
       .subscribe({
         next: (response: any) => {
           console.log(response);
-          localStorage.setItem('token', response.token);
+          localStorage.setItem('token', response);
           this.router.navigate(['/home']);
         },
         error: (error) => {
