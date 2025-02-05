@@ -17,6 +17,11 @@ export class AuthService {
           name: name,
           email: email,
           password: password
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
       );
     }catch(err){
