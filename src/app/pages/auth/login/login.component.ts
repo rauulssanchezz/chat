@@ -25,7 +25,8 @@ export class LoginComponent {
       .subscribe({
         next: (response: any) => {
           console.log(response);
-          localStorage.setItem('token', response);
+          localStorage.setItem('token', response.access_token);
+          localStorage.setItem('refreshToken', response.refresh_token);
           this.router.navigate(['/home']);
         },
         error: (error) => {
