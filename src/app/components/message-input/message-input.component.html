@@ -1,1 +1,9 @@
-<p>message-input works!</p>
+<div class="message-input-container">
+  <textarea
+    class="message-input"
+    placeholder="Escribe tu mensaje..."
+    [(ngModel)]="message"
+  ></textarea>
+  <button class="send-button" (click)="sendMessage()">Enviar</button>
+</div>
+

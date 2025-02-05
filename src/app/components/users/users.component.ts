@@ -1,5 +1,6 @@
 import { NgClass } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { MessagesService } from '../../services/messages.service';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,14 @@ import { Component, Input } from '@angular/core';
   styleUrl: './users.component.css'
 })
 export class UsersComponent {
-@Input() name = '';
-@Input() email = '';
-@Input() selected = false;
+  @Input() name = '';
+  @Input() email = '';
+  receiverEmail = '';
+  @Input() selected = false;
+
+  constructor(private _messageService: MessagesService) {}
+
+  onSelect() {
+    this._messageService.changeReceiverEmail(this.email);
+  }
 }

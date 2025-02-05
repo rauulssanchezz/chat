@@ -2,7 +2,12 @@
   <div class="users">
     <h2>Users</h2>
     <div *ngFor="let user of users; let i = index">
-      <app-users [name]="user.name" [email]="user.email" [selected]="selected[i]" (click)="selectUser(i)"></app-users>
+      <app-users
+        [name]="user.name"
+        [email]="user.email"
+        [selected]="selected[i]"
+        (click)="selectUser(i)"
+      ></app-users>
     </div>
   </div>
   <div class="chat">

@@ -1,3 +1,6 @@
 <div class="chat-container">
-  <p>chat works!</p>
+  <div class="messages-container" *ngFor="let message of messages; let i = index">
+    <app-message [message]="message.content" [sender]="sender[i]"></app-message>
+  </div>
+  <app-message-input [receiverEmail]="receiverEmail"></app-message-input>
 </div>

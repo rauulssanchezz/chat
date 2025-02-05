@@ -27,6 +27,7 @@ export class LoginComponent {
           console.log(response);
           localStorage.setItem('token', response.access_token);
           localStorage.setItem('refreshToken', response.refresh_token);
+          localStorage.setItem('email', this.email);
           this.router.navigate(['/home']);
         },
         error: (error) => {

@@ -6,6 +6,8 @@
 }
 
 .home-container {
+  height: 100%;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 3fr;
   grid-template-rows: 1fr;
@@ -15,4 +17,8 @@
 }
 
 .chat { grid-area: chat; }
-.users { grid-area: users; }
+.users {
+   grid-area: users;
+   height: 80vh;
+   overflow-y: scroll;
+  }

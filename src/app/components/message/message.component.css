@@ -1,0 +1,21 @@
+.message-container-other, .message-container-self{
+  max-width: 20rem;
+  padding: 1rem;
+  word-wrap: break-word;
+  display: flex;
+}
+
+.message-container-other p, .message-container-self p {
+  background: var(--useBackground);
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0;
+}
+
+.message-container-self{
+  justify-self: flex-end;
+}
+
+.message-container-other{
+  justify-self: flex-start;
+}
