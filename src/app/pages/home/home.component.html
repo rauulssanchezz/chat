@@ -1,8 +1,14 @@
-<h2>Users</h2>
-<div class="users">
-  <div *ngFor="let user of users">
-    <app-users [name]="user.name" [email]="user.email"></app-users>
+<div class="home-container">
+  <div class="users">
+    <h2>Users</h2>
+    <div *ngFor="let user of users; let i = index">
+      <app-users [name]="user.name" [email]="user.email" [selected]="selected[i]" (click)="selectUser(i)"></app-users>
+    </div>
   </div>
+  <div class="chat">
+    <app-chat></app-chat>
+  </div>
+</div>
 <div class="log-out">
   <input type="button" value="Log out" (click)="logOut()">
 </div>

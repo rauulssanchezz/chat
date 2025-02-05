@@ -1,14 +1,20 @@
-.user-container {
+.user-container, .user-container-selected {
   display: flex;
   align-items: center;
   padding: 12px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--border);
   cursor: pointer;
   transition: background 0.3s;
+  width: 100%;
+  box-shadow: 0 0 5px 0 var(--cardShadow);
+}
+
+.user-container-selected {
+  background: var(--useBackground);
 }
 
 .user-container:hover {
-  background: #f5f5f5;
+  background: var(--useBackground);
 }
 
 .user-info {

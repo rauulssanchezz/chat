@@ -4,17 +4,19 @@ import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { UsersComponent } from "../../components/users/users.component";
 import { NgFor } from '@angular/common';
+import { ChatComponent } from "../../components/chat/chat.component";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [RouterModule, UsersComponent, NgFor],
+  imports: [RouterModule, UsersComponent, NgFor, ChatComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
   tokenValid = true;
   users: any[] = [];
+  selected: boolean[] = [];
 
   constructor(private _router: Router, private _authService: AuthService, private _userService: UserService) {}
 
@@ -26,13 +28,12 @@ export class HomeComponent {
   }
 
   logOut() {
-    console.log('Logging out');
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     this._router.navigate(['/login']);
   }
 
-  isTokenValid() {
+  async isTokenValid() {
     const token = localStorage.getItem('token') || '';
     try{
       this._authService.tokenIsValid(token).subscribe({
@@ -55,14 +56,14 @@ export class HomeComponent {
     }
   }
 
-  tokenValidTimeout() {
+  async tokenValidTimeout() {
+    await this.isTokenValid();
+
+    if(!this.tokenValid){
+      this.handleRefreshToken();
+    }else{
+    }
     setTimeout(() => {
-      this.isTokenValid();
-
-      if(!this.tokenValid){
-        this.handleRefreshToken();
-      }
-
       this.tokenValidTimeout();
     },60 * 60 * 1000)
   }
@@ -90,8 +91,10 @@ export class HomeComponent {
     try{
       this._userService.loadUsers().subscribe({
         next: (response: any) => {
-          console.log(response);
           this.users = response;
+          this.users.forEach(() => {
+            this.selected.push(false);
+          })
         },
         error: (err) => {
           console.log(err);
@@ -100,5 +103,12 @@ export class HomeComponent {
     }catch(err){
       console.log(err);
     }
+  }
+
+  selectUser(position: number) {
+    for (let i = 0; i < this.selected.length; i++) {
+      this.selected[i] = false;
+    }
+    this.selected[position] = !this.selected[position];
   }
 }
