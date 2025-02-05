@@ -1,4 +1,8 @@
-<p>home works!</p>
+<h2>Users</h2>
+<div class="users">
+  <div *ngFor="let user of users">
+    <app-users [name]="user.name" [email]="user.email"></app-users>
+  </div>
 <div class="log-out">
   <input type="button" value="Log out" (click)="logOut()">
 </div>

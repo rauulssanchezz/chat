@@ -6,7 +6,7 @@ import { environment } from '../../environment/environment';
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = environment.api_url;
+  private baseUrl = environment.api_url;
 
   constructor(private _httpClient: HttpClient) { }
 
